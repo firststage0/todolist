@@ -9,6 +9,7 @@ const AddElement = (props) => {
       <div className="input-container">
         <br />
         <input
+          id="input-field"
           className="input-field"
           type="text"
           onInput={(el) => {
@@ -20,6 +21,7 @@ const AddElement = (props) => {
         <button
           onClick={() => {
             handleCreate(input);
+            document.getElementById("input-field").value = "";
           }}
         >
           Add task
