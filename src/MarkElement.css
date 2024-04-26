@@ -3,6 +3,32 @@
   justify-content: center;
 }
 
-.input-check:checked + .element {
-  text-decoration: line-through;
+.input-check {
+  display: flex;
+}
+
+.element::after {
+  content: "";
+  position: absolute;
+  width: 0%;
+  background: lightskyblue;
+  transition: 300ms ease-out;
+  height: 2px;
+  top: calc(50% - height/2);
+  pointer-events: none;
+}
+
+.input-check:checked {
+  .element {
+    text-decoration: line-through;
+  }
+}
+
+@keyframes mark-animation {
+  from {
+    text-decoration: none;
+  }
+  to {
+    text-decoration: line-through;
+  }
 }

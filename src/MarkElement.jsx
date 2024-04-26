@@ -4,16 +4,17 @@ const MarkElement = (props) => {
 
   return (
     <div className="task-container">
-      <div style={{ display: "flex" }}>
+      <div className="input-check">
         {
           <input
             type="checkbox"
-            className="input-check"
 
             /* onClick={() => handleDelete(id)}*/
           />
         }
-        <h3 className="element">{element}</h3>
+        <h3 className="element" style={{ textDecoration: "line-through" }}>
+          {element}
+        </h3>
       </div>
     </div>
   );
