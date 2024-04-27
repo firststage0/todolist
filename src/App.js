@@ -5,7 +5,7 @@ import MarkElement from './MarkElement';
 import AddElement from './AddElement';
 
 function App() {
-  const list = ['title1', 'title2','titile3']
+  const list = ['Task 1', 'Task 2','Task 3']
   const [state, setState] = useState(list);
 
   // const handleDelete = (id) => {
