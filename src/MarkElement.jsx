@@ -1,18 +1,23 @@
 import "./MarkElement.css";
+import { useState } from "react";
 const MarkElement = (props) => {
   const { element } = props;
+  const [isButtonClicked, setIsButtonClicked] = useState(false);
+
+  const changeClassName = () => {
+    setIsButtonClicked(!isButtonClicked);
+  };
 
   return (
     <div className="task-container">
       <div className="input-check">
-        {
-          <input
-            type="checkbox"
+        <input
+          type="checkbox"
+          className="check-box"
+          onClick={changeClassName}
+        />
 
-            /* onClick={() => handleDelete(id)}*/
-          />
-        }
-        <h3 className="element" style={{ textDecoration: "line-through" }}>
+        <h3 className={`text-strike ${isButtonClicked ? "active" : ""}`}>
           {element}
         </h3>
       </div>

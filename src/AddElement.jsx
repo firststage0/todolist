@@ -16,16 +16,16 @@ const AddElement = (props) => {
             setInput(el.target.value);
           }}
         />
-      </div>
-      <div className="button-container">
-        <button
-          onClick={() => {
-            handleCreate(input);
-            document.getElementById("input-field").value = "";
-          }}
-        >
-          Add task
-        </button>
+        <div className="button-container">
+          <button
+            onClick={() => {
+              handleCreate(input);
+              document.getElementById("input-field").value = "";
+            }}
+          >
+            Add task
+          </button>
+        </div>
       </div>
     </div>
   );
