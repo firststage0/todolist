@@ -1,7 +1,12 @@
 .task-container {
   display: flex;
-  /* justify-content: center; */
+  background-color: lightcyan;
   margin-left: 40%;
+  width: max-content;
+  border-radius: 10px;
+
+  border-color: black;
+  margin-top: 20px;
 }
 
 .input-check {

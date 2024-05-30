@@ -1,0 +1,9 @@
+.element {
+  width: 300px;
+  height: 300px;
+  background-color: red;
+}
+
+.element.active {
+  background-color: blue;
+}
