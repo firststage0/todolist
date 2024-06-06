@@ -3,9 +3,17 @@ import { useState } from "react";
 
 import MarkElement from "./MarkElement";
 import AddElement from "./AddElement";
-
+import fetcher from "./fetcher";
 function App() {
-  const list = ["Task 1", "Task 2", "Task 3"];
+  // const postsURL =
+  //   "https://my-json-server.typicode.com/firststage0/todolistdb/posts";
+
+  // const fetchData = async (postsURL) => {
+  //   const data = await fetcher(postsURL);
+  //   console.log(data);
+  // };
+
+  const list = ["task 1", "task 2", "task 3"];
   const [state, setState] = useState(list);
 
   const handleDelete = (id) => {
@@ -27,7 +35,10 @@ function App() {
       {<AddElement handleCreate={handleCreate} />}
       {state.map((el, index) => {
         return (
-          <MarkElement element={el} id={index} handleDelete={handleDelete} />
+          <div>
+            <MarkElement element={el} id={index} handleDelete={handleDelete} />
+            <fetcherButton text={"get data"} />
+          </div>
         );
       })}
     </>
