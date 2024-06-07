@@ -3,15 +3,25 @@ import { useState } from "react";
 
 import MarkElement from "./MarkElement";
 import AddElement from "./AddElement";
-import fetcher from "./fetcher";
-function App() {
-  // const postsURL =
-  //   "https://my-json-server.typicode.com/firststage0/todolistdb/posts";
+import FetcherButton from "./FetcherButton";
+import { fetcher } from "./fetcher";
 
-  // const fetchData = async (postsURL) => {
-  //   const data = await fetcher(postsURL);
-  //   console.log(data);
-  // };
+function App() {
+  const [resData, setResData] = useState("default useStatee");
+  const postsURL =
+    "https://my-json-server.typicode.com/firststage0/todolistdb/posts";
+
+  const getData = async () => {
+    const fetchData = async () => {
+      const data = await fetcher(postsURL);
+      setResData(data);
+    };
+
+    if (resData) {
+      await fetchData();
+    }
+    console.log(resData);
+  };
 
   const list = ["task 1", "task 2", "task 3"];
   const [state, setState] = useState(list);
@@ -33,12 +43,10 @@ function App() {
   return (
     <>
       {<AddElement handleCreate={handleCreate} />}
+      <FetcherButton func={getData} text={"get data"} />
       {state.map((el, index) => {
         return (
-          <div>
-            <MarkElement element={el} id={index} handleDelete={handleDelete} />
-            <fetcherButton text={"get data"} />
-          </div>
+          <MarkElement element={el} id={index} handleDelete={handleDelete} />
         );
       })}
     </>

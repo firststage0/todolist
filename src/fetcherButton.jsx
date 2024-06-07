@@ -1,6 +1,4 @@
-import { fetcher } from "./fetcher";
-
-const fetchButton = (props) => {
+const FetcherButton = (props) => {
   const { func, text } = props;
   return (
     <>
@@ -8,4 +6,4 @@ const fetchButton = (props) => {
     </>
   );
 };
-export default fetchButton;
+export default FetcherButton;
