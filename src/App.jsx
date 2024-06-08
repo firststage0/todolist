@@ -7,12 +7,18 @@ import FetcherButton from "./FetcherButton";
 import { fetcher } from "./fetcher";
 
 function App() {
+  const list = ["task 1", "task 2", "task 3"];
   const [resData, setResData] = useState("");
   const postsURL =
     "https://my-json-server.typicode.com/firststage0/todolistdb/posts";
 
   useEffect(() => {
-    console.log(resData);
+    const entries = Object.entries(resData);
+    for (const el of entries) {
+      const [, value] = el;
+      console.log(value["title"]);
+    }
+    // console.log(resData);
   }, [resData]);
 
   const getData = async () => {
@@ -20,7 +26,6 @@ function App() {
     setResData(data);
   };
 
-  const list = ["task 1", "task 2", "task 3"];
   const [state, setState] = useState(list);
 
   const handleDelete = (id) => {
