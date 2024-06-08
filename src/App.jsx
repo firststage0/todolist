@@ -1,5 +1,5 @@
 /* eslint-disable array-callback-return */
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 import MarkElement from "./MarkElement";
 import AddElement from "./AddElement";
@@ -7,20 +7,17 @@ import FetcherButton from "./FetcherButton";
 import { fetcher } from "./fetcher";
 
 function App() {
-  const [resData, setResData] = useState("default useStatee");
+  const [resData, setResData] = useState("");
   const postsURL =
     "https://my-json-server.typicode.com/firststage0/todolistdb/posts";
 
-  const getData = async () => {
-    const fetchData = async () => {
-      const data = await fetcher(postsURL);
-      setResData(data);
-    };
-
-    if (resData) {
-      await fetchData();
-    }
+  useEffect(() => {
     console.log(resData);
+  }, [resData]);
+
+  const getData = async () => {
+    const data = await fetcher(postsURL);
+    setResData(data);
   };
 
   const list = ["task 1", "task 2", "task 3"];

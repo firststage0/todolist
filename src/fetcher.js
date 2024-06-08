@@ -1,5 +1,5 @@
 export const fetcher = async (URL) => {
-  await fetch(URL)
+  return fetch(URL)
     .then((res) => {
       if (!res.ok) {
         throw new Error("Response is`nt ok");
@@ -8,6 +8,7 @@ export const fetcher = async (URL) => {
     })
     .then((data) => {
       // console.log(data);
+      return data;
     })
     .catch((err) => {
       console.log(`Error: ${err}`);
