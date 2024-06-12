@@ -8,26 +8,22 @@ import { fetcher } from "./fetcher";
 
 function App() {
   const list = [];
-  const [resData, setResData] = useState("");
+
   const [state, setState] = useState(list);
   const postsURL =
     "https://my-json-server.typicode.com/firststage0/todolistdb/posts";
 
   useEffect(() => {
-    const entries = Object.entries(resData);
-    for (const el of entries) {
-      const [, value] = el;
-      list.push(value["title"]);
-      // console.log(value["title"]);
-    }
-    setState(list);
+    const data = fetcher(postsURL);
+    data.then((dataResponse) => {
+      for (const el of dataResponse) {
+        list.push(el.title);
+        setState(list);
+      }
+    });
     console.log(list);
-  }, [resData]);
-
-  const getData = async () => {
-    const data = await fetcher(postsURL);
-    setResData(data);
-  };
+    // console.log(list);
+  }, []);
 
   const handleDelete = (id) => {
     setState((prevState) => {
@@ -46,9 +42,8 @@ function App() {
   return (
     <>
       <AddElement handleCreate={handleCreate} />
-      <FetcherButton func={getData} text={"get data"} />
+
       {state.map((el, index) => {
-        console.log("All good");
         return (
           <MarkElement element={el} id={index} handleDelete={handleDelete} />
         );
