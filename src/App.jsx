@@ -43,21 +43,16 @@ function App() {
     });
   };
 
-  const renderMarkElement = () => {
-    if (state !== undefined) {
-      state.map((el, index) => {
-        return (
-          <MarkElement element={el} id={index} handleDelete={handleDelete} />
-        );
-      });
-    }
-  };
-
   return (
     <>
       <AddElement handleCreate={handleCreate} />
       <FetcherButton func={getData} text={"get data"} />
-      {renderMarkElement()}
+      {state.map((el, index) => {
+        console.log("All good");
+        return (
+          <MarkElement element={el} id={index} handleDelete={handleDelete} />
+        );
+      })}
     </>
   );
 }
