@@ -7,8 +7,9 @@ import FetcherButton from "./FetcherButton";
 import { fetcher } from "./fetcher";
 
 function App() {
-  const list = ["task 1", "task 2", "task 3"];
+  const list = [];
   const [resData, setResData] = useState("");
+  const [state, setState] = useState(list);
   const postsURL =
     "https://my-json-server.typicode.com/firststage0/todolistdb/posts";
 
@@ -16,17 +17,17 @@ function App() {
     const entries = Object.entries(resData);
     for (const el of entries) {
       const [, value] = el;
-      console.log(value["title"]);
+      list.push(value["title"]);
+      // console.log(value["title"]);
     }
-    // console.log(resData);
+    setState(list);
+    console.log(list);
   }, [resData]);
 
   const getData = async () => {
     const data = await fetcher(postsURL);
     setResData(data);
   };
-
-  const [state, setState] = useState(list);
 
   const handleDelete = (id) => {
     setState((prevState) => {
@@ -42,15 +43,21 @@ function App() {
     });
   };
 
-  return (
-    <>
-      {<AddElement handleCreate={handleCreate} />}
-      <FetcherButton func={getData} text={"get data"} />
-      {state.map((el, index) => {
+  const renderMarkElement = () => {
+    if (state !== undefined) {
+      state.map((el, index) => {
         return (
           <MarkElement element={el} id={index} handleDelete={handleDelete} />
         );
-      })}
+      });
+    }
+  };
+
+  return (
+    <>
+      <AddElement handleCreate={handleCreate} />
+      <FetcherButton func={getData} text={"get data"} />
+      {renderMarkElement()}
     </>
   );
 }
