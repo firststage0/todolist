@@ -3,26 +3,22 @@ import { useEffect, useState } from "react";
 
 import MarkElement from "./MarkElement";
 import AddElement from "./AddElement";
-import FetcherButton from "./FetcherButton";
 import { fetcher } from "./fetcher";
 
 function App() {
-  const list = [];
-
-  const [state, setState] = useState(list);
+  const [state, setState] = useState([]);
   const postsURL =
     "https://my-json-server.typicode.com/firststage0/todolistdb/posts";
 
   useEffect(() => {
     const data = fetcher(postsURL);
     data.then((dataResponse) => {
-      for (const el of dataResponse) {
-        list.push(el.title);
-        setState(list);
-      }
+      console.log(dataResponse);
+      const list = dataResponse.map((el) => el.title);
+      setState(list);
     });
-    console.log(list);
-    // console.log(list);
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const handleDelete = (id) => {
@@ -42,7 +38,6 @@ function App() {
   return (
     <>
       <AddElement handleCreate={handleCreate} />
-
       {state.map((el, index) => {
         return (
           <MarkElement element={el} id={index} handleDelete={handleDelete} />
